@@ -42,4 +42,11 @@ const bookingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+bookingSchema.virtual("id").get(function () {
+  return this._id.toHexString();
+});
+
+bookingSchema.set("toJSON", {
+  virtuals: true,
+});
 module.exports = mongoose.model("Booking", bookingSchema);
